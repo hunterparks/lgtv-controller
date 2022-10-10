@@ -224,7 +224,11 @@ router.post('/:id/mute-state', validateTvId, async (req, res, next) => {
 // Power
 router.post('/:id/power', validateTvId, async (req, res, next) => {
   const id = req.params.id;
-  const rawPower = req.body.payload.power;
+  let rawPower = req.body.payload.power;
+  // Handle AHK weirdness
+  if (rawPower === 0) {
+    rawPower = false;
+  }
   const power = rawPower;
   if (typeof power !== 'boolean') {
     return next(
