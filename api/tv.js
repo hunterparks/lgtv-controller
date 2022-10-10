@@ -236,7 +236,7 @@ router.post('/:id/power', validateTvId, async (req, res, next) => {
     if (power) {
       await tv.powerOn();
     } else {
-      await tv.PowerOff();
+      await tv.powerOff();
     }
     return {
       power: power ? 'on' : 'off',
